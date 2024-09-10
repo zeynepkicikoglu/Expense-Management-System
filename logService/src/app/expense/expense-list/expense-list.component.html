@@ -1,0 +1,77 @@
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="profile">
+    <div class="profile-name">
+      Hoş geldin {{ this.authService.getPerson().Name }}
+    </div>
+  </div>
+  <button class="btn btn-danger btnn" (click)="logout()">Logout</button>
+</nav>
+
+<div class="container">
+  <!-- Sidebar for month and year selection -->
+  <div class="sidebar">
+    <div class="controls">
+      <label for="month">Month:</label>
+      <select id="month" [(ngModel)]="selectedMonth">
+        <option *ngFor="let month of months" [value]="month.value">
+          {{ month.label }}
+        </option>
+      </select>
+
+      <label for="year">Year:</label>
+      <select id="year" [(ngModel)]="selectedYear">
+        <option *ngFor="let year of years" [value]="year.value">
+          {{ year.label }}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-primary" (click)="listExpenses()">List</button>
+  </div>
+
+  <div class="main-content">
+    <!-- <nav class="navbar">
+      <div>{{ this.authService.getPerson().Name }}</div>
+      <button class="btn btn-danger btnn" (click)="logout()">Logout</button>
+    </nav> -->
+
+    <!-- Article Section -->
+    <article>
+      <table>
+        <thead>
+          <tr>
+            <th>Expense ID</th>
+            <th>Customer ID</th>
+            <th>Customer Name</th>
+            <th>Expense Code</th>
+            <th>Expense Code Desc</th>
+            <th>Expense Date</th>
+            <th>Description</th>
+            <th>Expense Type</th>
+            <th>Document No</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expenses">
+            <td>{{ expense.ExpenseId }}</td>
+            <td>{{ expense.CustomerId }}</td>
+            <td>{{ expense.CustomerName }}</td>
+            <td>{{ expense.ExpenseCode }}</td>
+            <td>{{ expense.ExpenseCodeDesc }}</td>
+            <td>{{ expense.ExpenseDate }}</td>
+            <td>{{ expense.Description }}</td>
+            <td>{{ expense.ExpenseType }}</td>
+            <td>{{ expense.DocumentNo }}</td>
+            <td>{{ expense.Amount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+      <button (click)="addExpense()">Add Expense</button>
+    </footer>
+  </div>
+</div>

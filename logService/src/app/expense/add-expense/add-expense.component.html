@@ -1,0 +1,149 @@
+<div class="container mt-6">
+  <nav class="navbar d-flex justify-content-end">
+    <!-- Other navigation items -->
+    <div class="profile">
+      <div class="profile-name">
+        Hoş geldin {{ this.authService.getPerson().Name }}
+      </div>
+    </div>
+    <button class="btn btn-danger btnn" (click)="logout()">Logout</button>
+  </nav>
+
+  <div class="form-container mt-4">
+    <h2 class="mb-4">Add Expense</h2>
+
+    <!-- Loader -->
+    <div *ngIf="isLoading" class="loader"></div>
+
+    <!-- Success and Error Messages -->
+    <div *ngIf="successMessage" class="alert alert-success notify">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger notify">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #expenseForm="ngForm">
+      <!-- Form Fields Here -->
+      <div class="form-group mb-3">
+        <label for="customerId">Customer</label>
+        <select
+          id="customerId"
+          class="form-control"
+          [(ngModel)]="expense.customerId"
+          name="customerId"
+          required
+        >
+          <option
+            *ngFor="let customer of customers"
+            [value]="customer.CustomerId"
+          >
+            {{ customer.CustomerId }}: {{ customer.Name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="expenseDate">Expense Date</label>
+        <input
+          type="date"
+          id="expenseDate"
+          class="form-control"
+          [(ngModel)]="expense.expenseDate"
+          name="expenseDate"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="expenseCode">Expense Code</label>
+        <select
+          id="expenseCode"
+          class="form-control"
+          [(ngModel)]="expense.expenseCode"
+          name="expenseCode"
+          required
+        >
+          <option *ngFor="let code of expenseCodes" [value]="code.ExpenseCode">
+            {{ code.ExpenseCode }}: {{ code.Description }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          [(ngModel)]="expense.description"
+          name="description"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="expenseType">Expense Type</label>
+        <select
+          id="expenseType"
+          class="form-control"
+          [(ngModel)]="expense.expenseType"
+          name="expenseType"
+          required
+        >
+          <option *ngFor="let type of expenseTypes" [value]="type.id">
+            {{ type.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="documentNo">Document No</label>
+        <input
+          type="text"
+          id="documentNo"
+          class="form-control"
+          [(ngModel)]="expense.documentNo"
+          name="documentNo"
+          required
+        />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="amount">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          class="form-control"
+          [(ngModel)]="expense.amount"
+          name="amount"
+          [ngClass]="{ 'invalid-input': isAmountInvalid }"
+          (focus)="onAmountFocus()"
+          required
+        />
+        <div *ngIf="isAmountInvalid" class="amount-error">
+          Miktar sıfır ve sıfırdan küçük olamaz.
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-primary" (click)="goBack()">
+          Back To Expense List
+        </button>
+        <button
+          type="submit"
+          class="btn btn-secondary"
+          [disabled]="!expenseForm.form.valid || isLoading"
+        >
+          Add Expense
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

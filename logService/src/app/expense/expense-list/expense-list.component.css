@@ -1,0 +1,207 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 200px; /* Navigasyon genişliği */
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.sidebar .controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .controls label {
+  margin-bottom: 10px;
+}
+
+.sidebar .controls select {
+  margin-bottom: 20px;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background-image: url("/assets/images/s.jpg");
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 20px; /* İçerik için sağ ve sol padding eklendi */
+  height: 20vh;
+  background-repeat: no-repeat;
+}
+
+.profile {
+  width: 100%;
+  align-items: center;
+}
+
+.profile-name {
+  margin-left: 75%;
+  float: right;
+  font-size: 18px;
+  color: white; /* Beyaz renk ile isim okunabilirliğini artırır */
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* İsim için hafif bir gölge eklendi */
+}
+
+article {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+footer {
+  background-color: #f8f8f8;
+  padding: 10px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btnn {
+  margin-left: auto; /* Logout butonunu sağa yerleştirir */
+  background-color: red;
+  /*margin-top: -10vh;*/
+}
+
+button:hover {
+  background-color: #ad4c4c;
+}
+/* Ekran genişliği 768px'den küçük olduğunda uygulanacak stiller */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 10px;
+  }
+
+  .navbar {
+    padding: 10px;
+    height: auto;
+  }
+
+  .profile-name {
+    margin-left: 0;
+    float: none;
+    text-align: center;
+  }
+
+  article {
+    padding: 10px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+
+  footer {
+    padding: 10px;
+  }
+}
+
+/* Ekran genişliği 480px'den küçük olduğunda uygulanacak stiller */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-name {
+    font-size: 16px;
+  }
+
+  .btnn {
+    margin-left: 0;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 3px;
+  }
+}
+
+/* iPad Air screen size */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+  .container {
+    padding: 30px;
+  }
+
+  .sidebar {
+    width: 250px;
+  }
+
+  .main-content {
+    padding: 30px;
+  }
+
+  article {
+    padding: 20px;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  th,
+  td {
+    padding: 15px;
+  }
+}
